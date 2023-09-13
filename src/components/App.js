@@ -33,12 +33,13 @@ const App = () => {
                 className="input"
                 type="text"
                 onChange={handleInputVal}
+                value={inputVal}
                 />
                 <button 
                 className="btn"
                 onClick={handleAddTodoBtn}>Add Todo</button>
           </div>
-          <div className="doto-container">
+          <ul className="doto-container">
              {
               list.map((listItem) => {
                 return <ToDo
@@ -49,7 +50,7 @@ const App = () => {
               })
             }
 
-          </div>
+          </ul>
     </div>
   )
 }

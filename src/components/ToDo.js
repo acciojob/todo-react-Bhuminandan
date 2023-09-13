@@ -5,10 +5,10 @@ const ToDo = ({name, onDelete}) => {
         onDelete(); // Call the onDelete callback
     };
   return (
-    <div className='todolist-container'>
+    <li className='todolist-container'>
         <p>{name}</p>
         <button onClick={handleDelete}>Delete</button>
-    </div>
+    </li>
   )
 }
 
