@@ -1,6 +1,5 @@
 
 import React, { useState } from "react";
-import ToDo from "./ToDo";
 import './../styles/App.css';
 
 const App = () => {
@@ -14,14 +13,17 @@ const App = () => {
   }
 
   const handleAddTodoBtn = () => {
-    const newList = [...list, inputVal]; // Create a new array with the updated data
-    setList(newList); // Update the state with the new array
-    setInputVal(""); // Clear the input field
+    if (inputVal) {
+      const newList = [...list, inputVal]; // Create a new array with the updated data
+      setList(newList); // Update the state with the new array
+      setInputVal(""); // Clear the input field
+    }
+    
   }
 
-  const handleDeleteTodo = (todoName) => {
+  const handleDelete = (index) => {
     // Create a new array excluding the todo item to delete
-    const updatedList = list.filter((item) => item !== todoName);
+    const updatedList = list.filter((item, i) => i !== index);
     setList(updatedList);
   }
 
@@ -41,15 +43,15 @@ const App = () => {
           </div>
           <ul className="doto-container">
              {
-              list.map((listItem) => {
-                return <ToDo
-                  key={listItem}
-                  name={listItem}
-                  onDelete={() => handleDeleteTodo(listItem)} // Pass the delete callback
-                />
+               list.map((listItem, index) => {
+                return (
+                  <li className='todolist-container'>
+                      <p>{listItem}</p>
+                      <button onClick={() => handleDelete(index)}>Delete</button>
+                  </li>
+                )
               })
             }
-
           </ul>
     </div>
   )
